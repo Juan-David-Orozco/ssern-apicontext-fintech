@@ -1,12 +1,17 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useAuth } from '../context/authContext'
 import { useNavigate } from 'react-router-dom'
+import ReCAPTCHA from "react-google-recaptcha";
 
 export function LoginForm() {
 
   const [user, setUser] = useState({
     email: '', password: ''
   })
+
+  const [validCaptcha, setValidCaptcha] = useState(null)
+
+  const captcha = useRef(null)
 
   const { login } = useAuth()
 
@@ -16,12 +21,27 @@ export function LoginForm() {
     setUser({...user, [name]: value})
   }
 
+  const onChange = () => {
+    if(captcha.current.getValue())
+      setValidCaptcha(true)
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(user.email, user.password)
-    const result = await login(user.email, user.password)
-    console.log(result)
-    navigate("/home-customer")
+    try {
+      if(captcha.current.getValue()) {
+        const result = await login(user.email, user.password)
+        console.log(result)
+        setValidCaptcha(true)
+        navigate("/home-customer")
+      } else {
+        console.log("Debe aceptar el captcha")
+        setValidCaptcha(false)
+      }
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -65,6 +85,14 @@ export function LoginForm() {
               />
             </div>
           </div>
+          <div className='mb-0'>
+              <ReCAPTCHA
+                ref={captcha}
+                sitekey="6LcFHfwkAAAAACArVySBO4pn4Tn8hvbpld4CFbwC"
+                onChange={onChange}
+              />,
+          </div>
+          {validCaptcha === false && <div className='text-danger text-center mb-2'>Debe aceptar el captcha</div>}
           <div className='row'>
             <button type='submit' className='col-6 mx-auto mt-2 mb-3 btn btn-block bg-primary text-center py-2'>Iniciar Sesión</button>
           </div>
