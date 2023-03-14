@@ -1,11 +1,13 @@
 import axios from 'axios'
 
-const url = "http://localhost:4000"
+let url = "http://localhost:4000"
 
-export const loginRequest = async () => {
-  return await axios.post(`${url}/api/login`, {
+export const loginRequest = async (email, password) => {
+  return await axios.post(`${url}/api/login`, {email, password} , {
     headers: {
       "Content-Type": "application/json"
     }
   })
 }
+
+//export const logoutRequest = async ()

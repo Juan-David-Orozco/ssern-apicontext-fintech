@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useAuth } from '../context/authContext'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 
 export function LoginForm() {
 
@@ -18,9 +18,10 @@ export function LoginForm() {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(user)
-    await login(user.email, user.password)
-    navigate("/")
+    console.log(user.email, user.password)
+    const result = await login(user.email, user.password)
+    console.log(result)
+    navigate("/home-customer")
   }
 
   return (
