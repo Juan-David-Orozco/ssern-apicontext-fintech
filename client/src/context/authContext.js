@@ -11,16 +11,16 @@ export const useAuth = () => {
 
 export const AuthProvider = ({children}) => {
 
-  const [user, setUser] = useState(null)
+  const [userLogin, setUserLogin] = useState(null)
 
   const login = async (email, password) => {
     const result = await loginRequest(email, password)
-    setUser(result.data.userLogin)
+    setUserLogin(result.data.userLogin)
     return result
   }
 
   const logout = () => {
-    setUser(null)
+    setUserLogin(null)
   }
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const AuthProvider = ({children}) => {
 
   return (
     <authContext.Provider 
-      value={{ user, login, logout }}
+      value={{ userLogin, login, logout }}
     >
       {children}
     </authContext.Provider>

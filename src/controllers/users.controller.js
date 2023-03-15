@@ -18,7 +18,7 @@ export const createUser = async (req, res) => {
   if(username == null || email == null || password == null) {
     return res.status(400).json({msg: "Bad Request, Fields required"})
   }
-  if(type == null) type = "customer"
+  if(type == null) type = 2 // 2 => userType : customer
   console.log(username, email, password, type)
   try {
     const pool = await connectDB()
@@ -26,7 +26,7 @@ export const createUser = async (req, res) => {
       .input('i_username', sql.VarChar(50), username)
       .input('i_email', sql.VarChar(100), email)
       .input('i_password', sql.VarChar(100), password)
-      .input('i_type', sql.VarChar(50), type)
+      .input('i_type', sql.Int, type)
       .input('i_active', sql.Bit, true)
       .execute('createNewUser')
     res.status(201).json({msg: "New user created"})
