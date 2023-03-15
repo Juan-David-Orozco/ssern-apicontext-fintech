@@ -37,7 +37,13 @@ export function LoginForm() {
         const result = await login(user.email, user.password)
         console.log(result)
         setValidCaptcha(true)
-        navigate("/home-customer")
+        const userValid = result.data.userLogin
+        console.log(userValid)
+        if(!userValid) navigate("/")
+        if(userValid.UserType === "customer")
+          navigate("/home-customer")
+        if(userValid.UserType === "admin")
+          navigate("/home-admin")
       } else {
         console.log("Debe aceptar el captcha")
         setValidCaptcha(false)
@@ -51,7 +57,7 @@ export function LoginForm() {
   return (
     <div className="row m-1">
       <div className="col-12 col-md-8 mx-auto px-4">
-        <h2 className="text-center">Login</h2>
+        <h2 className="text-center mt-4">Login</h2>
         <div className="row my-3 mx-auto">
           <div className="col-8 col-sm-6 col-md-4 mx-auto">
             <span className="input-group-text p-2">

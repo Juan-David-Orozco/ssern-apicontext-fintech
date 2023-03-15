@@ -1,28 +1,75 @@
 import { useAuth } from '../context/authContext'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate, Navigate } from 'react-router-dom'
+import { useState } from 'react'
+import { CustomerAnticipo } from '../components/CustomerAnticipo'
 
 export function Customer() {
 
-  const { userLogin, logout } = useAuth()
+  const { userLogin } = useAuth()
 
-  const navigate = useNavigate()
+  const [send, setSend] = useState(false)
 
-  const handleLogout = () => {
-    logout()
-    navigate("/login")
+  const [valueAnticipo, setValueAnticipo] = useState(0)
+
+  if(!userLogin) return (<Navigate to={'/login'} />)
+
+  const toggleInputAnticipo = () => {
+    const toggleInputAnticipo = document.getElementById('anticipo')
+    console.log(toggleInputAnticipo.disabled)
+    if(toggleInputAnticipo.disabled === true) {
+      toggleInputAnticipo.disabled = false
+    } else if(toggleInputAnticipo.disabled === false) {
+      toggleInputAnticipo.disabled = true
+    }
   }
 
-  if(!userLogin) return <Navigate to={'/login'} />
+  const handleChange = () => {
+    const valueAnticipoInput = document.getElementById('anticipo').value
+    console.log(valueAnticipoInput)
+    setValueAnticipo(valueAnticipoInput)
+  }
 
-  if(userLogin.UserType === "customer") return <Navigate to={'/'} />
+  const sendAnticipo = () => {
+    console.log(valueAnticipo)
+    setSend(true)
+  }
 
-  if(userLogin.UserType === "admin") return <Navigate to={'/home-admin'} />
+  const returnAnticipo = () => {
+    setSend(false)
+  }
 
-  return (
-    <div>
-      <div>{userLogin.username}</div>
-      <div>{userLogin.email}</div>
-      <button type='button' onClick={handleLogout} className='btn btn-danger'>Cerrar Sesión</button>
-    </div>
-  )
+  if(send){
+    return (
+      <div className="row m-1 bg-light rounded text-dark py-4 justify-content-center text-center">
+        Anticipo Enviado
+        <button className='btn btn-block btn-info' onClick={returnAnticipo}>Volver</button>
+      </div>)
+  } else {
+    return (
+      <div className="row m-1 bg-light rounded text-dark py-4 justify-content-center">
+        <div className="col-10 col-md-8 mx-auto py-4 my-4 mx-auto">
+          <div className="row mx-auto my-1 text-justify">
+            <div className="card">
+              <div className="card-title text-center mt-1 bg-dark text-white rounded">Bienvenido señor: {userLogin.username}</div>
+              <div className="card-body">Es un gusto contar con su visita, a continuacion aparecera el valor del 
+              anticipo que puede realizar en esta ocasion. Sientase libre de modificarlo considerando que el valor 
+              debe ser menor al cupo disponible</div>
+            </div>
+          </div>
+          <div className="row mx-auto mt-2 text-center">
+            <div className="col-10 mx-auto p-2">
+              <h4 className="my-2">Valor Anticipo Disponible</h4>
+              <form>
+                <div className="input-group-prepend">
+                  <input type="text" name="anticipo" id="anticipo" disabled={true} value={valueAnticipo} onChange={handleChange}/>
+                  <span className='mx-1'><i className="fa fa-edit" onClick={toggleInputAnticipo}></i></span>
+                </div>
+              </form>
+              <div type="button" className='btn btn-block btn-success mt-3' onClick={sendAnticipo}>Enviar</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    )
+  }
 }
