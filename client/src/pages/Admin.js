@@ -1,25 +1,37 @@
 import { useAuth } from '../context/authContext'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
+import { AdminTabs } from '../components/AdminTabs'
 
 export function Admin() {
 
-  const { userLogin, logout } = useAuth()
-
-  const navigate = useNavigate()
-  
-  const handleLogout = () => {
-    logout()
-    navigate("/login")
-  }
+  const { userLogin } = useAuth()
 
   if(!userLogin) return (<Navigate to={'/login'} />)
 
+  const tabs = [
+    {
+      nombre: 'dashboard',
+      icono: 'fa-bar-chart',
+      contenido: 'login'
+    },
+    {
+      nombre: 'customers',
+      icono: 'fa-group',
+      contenido: 'customers'
+    },
+    {
+      nombre: 'anticipos',
+      icono: 'fa-building',
+      contenido: 'anticipos'
+    },
+    {
+      nombre: 'archivo',
+      icono: 'fa-file',
+      contenido: 'archivo'
+    },
+  ]
+
   return (
-    <div>
-      <h3>Bienvenido Admin</h3>
-      <div>{userLogin.username}</div>
-      <div>{userLogin.email}</div>
-      <button type='button' onClick={handleLogout} className='btn btn-danger'>Cerrar Sesión</button>
-    </div>
+    <AdminTabs tabIndexActive={0} tabs={tabs} />
   )
 }

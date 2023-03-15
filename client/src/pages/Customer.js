@@ -1,7 +1,6 @@
 import { useAuth } from '../context/authContext'
-import { useNavigate, Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useState } from 'react'
-import { CustomerAnticipo } from '../components/CustomerAnticipo'
 
 export function Customer() {
 
@@ -15,7 +14,6 @@ export function Customer() {
 
   const toggleInputAnticipo = () => {
     const toggleInputAnticipo = document.getElementById('anticipo')
-    console.log(toggleInputAnticipo.disabled)
     if(toggleInputAnticipo.disabled === true) {
       toggleInputAnticipo.disabled = false
     } else if(toggleInputAnticipo.disabled === false) {
@@ -41,7 +39,7 @@ export function Customer() {
   if(send){
     return (
       <div className="row m-1 bg-light rounded text-dark py-4 justify-content-center text-center">
-        Anticipo Enviado
+        Anticipo Enviado de: {valueAnticipo}
         <button className='btn btn-block btn-info' onClick={returnAnticipo}>Volver</button>
       </div>)
   } else {
