@@ -4,14 +4,14 @@ import './App.css';
 import '../node_modules/bootstrap/dist/css/bootstrap.css'
 import '../node_modules/font-awesome/css/font-awesome.css'
 import { AuthProvider } from './context/authContext'
-import { Navigation } from './components/Navigation'
+//import { Navigation } from './components/Navigation'
 
 function App() {
   return (
-    <div className="container-fluid bg-dark p-2 mx-auto text-white">
+    <>
       <BrowserRouter>
         <AuthProvider>
-          <Navigation/>
+          {/* <Navigation/> */}
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/login" element={<Login />} />
@@ -22,7 +22,7 @@ function App() {
           </Routes>
         </AuthProvider>
       </BrowserRouter>
-    </div>
+    </>
   );
 }
 

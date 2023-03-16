@@ -19,8 +19,8 @@ export function Navigation() {
 
   if(!userLogin) {
     return(
-      <div className="row m-1">
-        <nav className="navbar bg-light rounded px-2 justify-content-between">
+      
+        <nav className="navbar bg-light justify-content-between px-2">
           <div className="px-1 text-center justify-content-center">
             <Link to="/" className="navbar-brand mx-auto" >
               Logo
@@ -37,7 +37,7 @@ export function Navigation() {
             </ul>
           </div>
         </nav>
-      </div>
+      
     )
   }
 

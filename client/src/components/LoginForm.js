@@ -60,68 +60,40 @@ export function LoginForm() {
   }
 
   return (
-    <div className="row m-1 login">
-      <div className="col-12 col-md-8 mx-auto px-4 my-2">
-        <form onSubmit={handleSubmit} className="bg-light rounded my-2">
-          <h2 className="text-center text-dark py-4">Inicio Sesión</h2>
-          <div className="row my-4 mx-auto py-4">
-            <div className="col-5 col-sm-4 mx-auto">
-              <span className="input-group-text px-2">
-                <i className="fa fa-user fa-3x p-4 mx-auto"></i>
-              </span>
-            </div>
-          </div>
-          {error && <Alert msg={error}/> }
-          <div className="row mx-auto">
-            <div className='col-10 col-md-8 mx-auto py-2'>
-              <label htmlFor="email" className='text-sm text-dark'>Email</label>
-              <div className="input-group mb-2 my-auto">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">
-                  <i className="fa fa-envelope-o fa-fw py-1"></i></span>
-                </div>
-                <input 
-                  type="email" name="email" 
-                  id="email" placeholder="email@example.com" 
-                  className=" login form-control px-2 m-auto"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className='col-10 col-md-8 mx-auto py-2'>
-              <label htmlFor="password" className='text-sm text-dark'>Password</label>
-              <div className="input-group mb-2 my-auto">
-                <div className="input-group-prepend">
-                  <span className="input-group-text">
-                  <i className="fa fa-key fa-fw py-1"></i></span>
-                </div>
-                <input
-                  type="password" name="password" 
-                  id="password" placeholder="******" 
-                  className="form-control px-2 m-auto"
-                  onChange={handleChange}
-                />
-              </div>
-            </div>
-            <div className='row mx-auto mt-2 p-1 align-items-center justify-content-center text-align-center'>
-              <div className="col-12 col-sm-11 col-md-9 col-lg-7 col-xl-5 mx-auto">
-                <ReCAPTCHA
-                  className=''
-                  ref={captcha}
-                  sitekey="6LcFHfwkAAAAACArVySBO4pn4Tn8hvbpld4CFbwC"
-                  onChange={onChange}
-                />,
-              </div>
-            </div>
-            {validCaptcha === false && <div className='text-danger text-center mb-4'>Debe aceptar el captcha</div>}
-            <div className='row mx-auto px-1 text-center'>
-              <div className="col-6 col-md-8 mx-auto mb-3">
-                <button type='submit' className='login btn btn-block bg-primary text-center py-2'>Iniciar Sesión</button>
-              </div>
-            </div>
-          </div>
-        </form>
+    <form onSubmit={handleSubmit} className="pb-3">
+
+      <h4 className="fw-bold mb-2 mt-1 text-uppercase">Login</h4>
+      <p className="text-white-50 mb-3">Please enter your email and password!</p>
+      {error && <Alert msg={error} />}
+
+      <div className="form-floating text-dark mb-2">
+        <input type="email" id="typeEmailX" className="form-control"
+          name="email" placeholder='email' onChange={handleChange} />
+        <label for="typeEmailX">Email</label>
       </div>
-    </div>
+
+      <div className="form-floating text-dark mb-2">
+        <input type="password" id="typePasswordX" className="form-control"
+          name="password" placeholder='password' onChange={handleChange} />
+        <label for="typePasswordX">Password</label>
+      </div>
+
+      <div className="row mx-auto mt-5">
+        <div className="col-10 mx-auto px-0">
+        <ReCAPTCHA
+          ref={captcha}
+          size='compact'
+          sitekey="6LcFHfwkAAAAACArVySBO4pn4Tn8hvbpld4CFbwC"
+          onChange={onChange}
+        />,
+        </div>
+      </div>
+      {validCaptcha === false && <div className='text-info text-center mb-4'>Debe aceptar el captcha</div>}
+
+      <div className="mt-2">
+        <button className="btn btn-outline-light btn-md px-5" type="submit">LOGIN</button>
+      </div>
+
+    </form>
   )
 }

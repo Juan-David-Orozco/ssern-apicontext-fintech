@@ -1,47 +1,15 @@
-@media screen and (max-width: 280px) {
-  a.nav-link.py-4 {
-    font-size: 12px;
-  }
-  span.name-admin-tab {
-    display: none;
-  }
+.gradient-custom {
+  /* fallback for old browsers */
+  background: #6a11cb;
+  
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: -webkit-linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1));
+  
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+  background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }
 
-@media screen and (max-width: 350px) {
-  div.nav-pills{
-    display: flex;
-    flex-direction: row !important;
-    flex-wrap: nowrap;
-  }
-  .login {
-    font-size: 12px !important;
-  }
+div.card.bg-dark{
+  border-radius: 1rem;
 }
 
-@media screen and (max-width: 420px) {
-  div.nav-pills{
-    display: flex;
-    flex-direction: row !important;
-    justify-content: space-evenly;
-  }
-  .fa.pr-2 {
-    font-size: 24px;
-  }
-  span.name-admin-tab {
-    display: none;
-  }
-  i.fa.fa-user.fa-3x {
-    padding: 1px !important;
-  }
-}
-
-@media screen and (max-width: 576px) {
-  div.nav-pills{
-    display: flex;
-    flex-direction: row !important;
-    justify-content: space-evenly;
-  }
-  span.name-admin-tab {
-    font-size: 12px;
-  }
-}
