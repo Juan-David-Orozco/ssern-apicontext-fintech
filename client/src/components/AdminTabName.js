@@ -14,7 +14,7 @@ export default class AdminTabName extends Component {
         onClick={() => tabsUpdate(this)}
       >
         <span className={'fa pr-2 '+this.props.icon}></span> <br/>
-          {this.props.children}
+        <span className='name-admin-tab'>{this.props.children}</span>
       </Link>
     )
   }
