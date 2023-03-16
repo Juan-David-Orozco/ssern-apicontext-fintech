@@ -8,7 +8,7 @@ import { Navigation } from './components/Navigation'
 
 function App() {
   return (
-    <div className="container bg-dark border border-primary p-2 my-4 mx-auto rounded text-white">
+    <div className="container-fluid bg-dark p-2 mx-auto text-white">
       <BrowserRouter>
         <AuthProvider>
           <Navigation/>

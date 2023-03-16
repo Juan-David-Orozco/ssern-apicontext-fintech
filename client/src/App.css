@@ -13,6 +13,9 @@
     flex-direction: row !important;
     flex-wrap: nowrap;
   }
+  .login {
+    font-size: 12px !important;
+  }
 }
 
 @media screen and (max-width: 420px) {
@@ -26,6 +29,9 @@
   }
   span.name-admin-tab {
     display: none;
+  }
+  i.fa.fa-user.fa-3x {
+    padding: 1px !important;
   }
 }
 
