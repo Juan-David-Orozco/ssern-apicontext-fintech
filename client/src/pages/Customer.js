@@ -1,6 +1,7 @@
 import { useAuth } from '../context/authContext'
-import { Navigate } from 'react-router-dom'
+//import { Navigate } from 'react-router-dom'
 import { useState } from 'react'
+import { SideBar } from '../components/SideBar'
 
 export function Customer() {
 
@@ -10,7 +11,7 @@ export function Customer() {
 
   const [valueAnticipo, setValueAnticipo] = useState(0)
 
-  if(!userLogin) return (<Navigate to={'/login'} />)
+  //if(!userLogin) return (<Navigate to={'/login'} />)
 
   const toggleInputAnticipo = () => {
     const toggleInputAnticipo = document.getElementById('anticipo')
@@ -32,16 +33,23 @@ export function Customer() {
     setSend(true)
   }
 
-  const returnAnticipo = () => {
-    setSend(false)
-  }
+  //const returnAnticipo = () => {setSend(false)}
 
-  if(send){
+  if(!send){
     return (
-      <div className="row m-1 bg-light rounded text-dark py-4 justify-content-center text-center">
-        Anticipo Enviado de: {valueAnticipo}
-        <button className='btn btn-block btn-info' onClick={returnAnticipo}>Volver</button>
-      </div>)
+      <section className="gradient-custom vh-100">
+        <div className="container py-5 h-100">
+          <div className="row d-flex justify-content-center align-items-center h-100">
+            <SideBar/>
+            <main>
+              <div className="container pt-4">
+                Main
+              </div>
+            </main>
+          </div> 
+        </div> 
+      </section>
+    )
   } else {
     return (
       <div className="row m-1 bg-light rounded text-dark py-4 justify-content-center">

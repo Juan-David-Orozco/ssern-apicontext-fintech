@@ -12,7 +12,6 @@ export function Login() {
                 <LoginForm />
               </div>
             </div>
-
           </div>
         </div>
       </div>
