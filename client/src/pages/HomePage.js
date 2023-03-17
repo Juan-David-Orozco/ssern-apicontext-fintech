@@ -1,4 +1,5 @@
 import { useAuth } from '../context/authContext'
+import { Navigation } from '../components/Navigation'
 
 export function HomePage() {
 
@@ -8,8 +9,11 @@ export function HomePage() {
 
   return (
     <>
-      <div className="row bg-light rounded text-dark mx-1 my-3 py-4 justify-content-center">
-        HomePage
+      <Navigation/>
+      <div className="container-fluid rounded text-dark my-5 py-4 justify-content-center vh-100">
+        <div className="row mx-auto align-items-center text-center">
+          <p>HomePage</p>
+        </div>
       </div>
     </>
   )

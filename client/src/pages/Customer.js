@@ -1,5 +1,5 @@
 import { useAuth } from '../context/authContext'
-//import { Navigate } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import { SideBar } from '../components/SideBar'
 
@@ -10,13 +10,13 @@ export function Customer() {
   const [send, setSend] = useState(false)
 
   const [showUserInfo, setShowUserInfo] = useState(false)
-  const [showHome, setShowHome] = useState(false)
+  const [showHome, setShowHome] = useState(true)
   const [showHistorico, setShowHistorico] = useState(false)
 
 
   const [valueAnticipo, setValueAnticipo] = useState(0)
 
-  //if(!userLogin) return (<Navigate to={'/login'} />)
+  if(!userLogin) return (<Navigate to={'/login'} />)
 
   const toggleInputAnticipo = () => {
     const toggleInputAnticipo = document.getElementById('anticipo')
@@ -40,20 +40,20 @@ export function Customer() {
 
   const handleUserInfo = (stateUserInfo) => {
     setShowUserInfo(stateUserInfo)
-    setShowHome(!stateUserInfo)
-    setShowHistorico(!stateUserInfo)
+    // setShowHome(!stateUserInfo)
+    // setShowHistorico(!stateUserInfo)
   }
 
   const handleHome = (stateHome) => {
     setShowHome(stateHome)
-    setShowUserInfo(!stateHome)
-    setShowHistorico(!stateHome)
+    // setShowUserInfo(!stateHome)
+    // setShowHistorico(!stateHome)
   }
 
   const handleHistorico = (stateHistorico) => {
     setShowHistorico(stateHistorico)
-    setShowUserInfo(!stateHistorico)
-    setShowHome(!stateHistorico)
+    // setShowUserInfo(!stateHistorico)
+    // setShowHome(!stateHistorico)
   }
 
 

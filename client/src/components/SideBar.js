@@ -1,5 +1,6 @@
 import { useNavigate} from 'react-router-dom'
 import { useAuth } from '../context/authContext'
+import avatar from '../img/avatar.icon.png'
 
 export function SideBar(props) {
 
@@ -9,9 +10,24 @@ export function SideBar(props) {
 
   const handleShowComponents = ({target}) => {
     console.log(target.id)
-    if(target.id === "user-info") props.handleUserInfo(true)
-    else if(target.id === "home") props.handleHome(true)
-    else if(target.id === "historico") props.handleHistorico(true)
+    if(target.id === "user-info") {
+      props.handleUserInfo(true)
+      props.handleHome(false)
+      props.handleHistorico(false)
+    }
+    else if(target.id === "home") {
+      props.handleHome(true)
+      props.handleUserInfo(false)
+      props.handleHistorico(false)
+    }
+    else if(target.id === "historico") {
+      props.handleHistorico(true)
+      props.handleHome(false)
+      props.handleUserInfo(false)
+
+    }
+    const toggleIcon = document.getElementById('sidebarMenu')
+    toggleIcon.classList.remove('show')
   }
 
   const handleLogout = () => {
@@ -26,7 +42,7 @@ export function SideBar(props) {
         <div className="position-sticky">
           <div className="text-center mt-5">
             <img
-              src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
+              src={avatar}
               className="rounded-circle my-2"
               height="150"
               alt="Avatar"
@@ -37,19 +53,25 @@ export function SideBar(props) {
             onClick={handleShowComponents} id="user-info">User</button>
           </div>
           <hr className="text-white"/>
-          <div className="row mx-auto justify-content-evenly">
-            <button className="btn btn-md bg-secondary d-flex justify-content-evenly align-items-center text-white"
-              onClick={handleShowComponents} id="home">
-              <i className="fa fa-home"></i><span className="sidebar-customer">Home</span>
-            </button>
-            <button className="btn btn-md bg-info d-flex justify-content-evenly align-items-center text-white"
-              onClick={handleShowComponents} id="historico">
-              <i className="fa fa-bar-chart-o"></i><span className="sidebar-customer">Historico</span>
-            </button>
-            <button className="btn btn-md bg-danger d-flex justify-content-evenly align-items-center text-white"
-              onClick={handleLogout} id="logout">
-              <i className="fa fa-sign-out"></i><span className="sidebar-customer">Salir</span>
-            </button>
+          <div className="row mx-auto justify-content-center mt-3">
+            <div className='btn-group'>
+              <button className="my-2 py-1 btn btn-md bg-secondary d-flex justify-content-evenly align-items-center text-white"
+                onClick={handleShowComponents} id="home">
+                <i className="fa fa-home"></i><span className="sidebar-customer">Home</span>
+              </button>
+            </div>
+            <div className="btn-group">
+              <button className="my-2 py-1 btn btn-md bg-primary d-flex justify-content-evenly align-items-center text-white"
+                onClick={handleShowComponents} id="historico">
+                <i className="fa fa-bar-chart-o"></i><span className="sidebar-customer">Historico</span>
+              </button>
+            </div>
+            <div className="btn-group">
+              <button className="my-2 py-1 btn btn-md bg-danger d-flex justify-content-evenly align-items-center text-white"
+                onClick={handleLogout} id="logout">
+                <i className="fa fa-sign-out"></i><span className="sidebar-customer">Salir</span>
+              </button>
+            </div>
           </div>
         </div>
       </nav>
