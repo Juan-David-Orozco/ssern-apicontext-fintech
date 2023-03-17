@@ -37,18 +37,15 @@ export function Customer() {
 
   if(!send){
     return (
-      <section className="gradient-custom vh-100">
-        <div className="container py-5 h-100">
-          <div className="row d-flex justify-content-center align-items-center h-100">
-            <SideBar/>
-            <main>
-              <div className="container pt-4">
-                Main
-              </div>
-            </main>
-          </div> 
-        </div> 
-      </section>
+      <>
+        <SideBar />
+        <main>
+          <div className="container pt-4">
+            Main
+          </div>
+        </main>
+      </>
+      
     )
   } else {
     return (

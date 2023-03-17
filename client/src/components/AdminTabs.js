@@ -1,5 +1,4 @@
-import '/node_modules/bootstrap/dist/css/bootstrap.css'
-import '/node_modules/font-awesome/css/font-awesome.css'
+//import '/node_modules/bootstrap/dist/css/bootstrap.css'
 import { useState } from 'react'
 import AdminTabName from './AdminTabName'
 import AdminTabContent from './AdminTabContent'

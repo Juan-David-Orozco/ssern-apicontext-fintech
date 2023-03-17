@@ -85,10 +85,10 @@ export function LoginForm() {
           size='compact'
           sitekey="6LcFHfwkAAAAACArVySBO4pn4Tn8hvbpld4CFbwC"
           onChange={onChange}
-        />,
+        />
         </div>
       </div>
-      {validCaptcha === false && <div className='text-info text-center mb-4'>Debe aceptar el captcha</div>}
+      {validCaptcha === false && <div className='text-info text-center mb-4 mt-2'>Debe aceptar el captcha</div>}
 
       <div className="mt-2">
         <button className="btn btn-outline-light btn-md px-5" type="submit">LOGIN</button>

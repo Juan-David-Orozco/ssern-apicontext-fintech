@@ -1,12 +1,12 @@
-import { useAuth } from '../context/authContext'
-import { Navigate } from 'react-router-dom'
+//import { useAuth } from '../context/authContext'
+//import { Navigate } from 'react-router-dom'
 import { AdminTabs } from '../components/AdminTabs'
 
 export function Admin() {
 
-  const { userLogin } = useAuth()
+  //const { userLogin } = useAuth()
 
-  if(!userLogin) return (<Navigate to={'/login'} />)
+  //if(!userLogin) return (<Navigate to={'/login'} />)
 
   const tabs = [
     {

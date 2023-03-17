@@ -1,5 +1,5 @@
-.gradient-custom {
-  /* fallback for old browsers */
+/* SIDE BAR */
+body {
   background: #6a11cb;
   
   /* Chrome 10-25, Safari 5.1-6 */
@@ -8,16 +8,6 @@
   /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
   background: linear-gradient(to right, rgba(106, 17, 203, 1), rgba(37, 117, 252, 1))
 }
-
-div.card.bg-dark{
-  border-radius: 1rem;
-}
-
-/* SIDE BAR */
-body {
-  background-color: #fbfbfb;
-}
-
 
 @media (min-width: 991.98px) {
   main {
@@ -55,5 +45,3 @@ body {
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
 }
-
-
