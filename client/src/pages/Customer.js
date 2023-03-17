@@ -40,8 +40,10 @@ export function Customer() {
       <>
         <SideBar />
         <main>
-          <div className="container pt-4">
-            Main
+          <div className="vh-100 container">
+            <div className="row mx-auto align-items-center h-100 text-white mt-5 mt-lg-0">
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi sit unde mollitia delectus nihil obcaecati blanditiis necessitatibus voluptate laudantium sint, corrupti voluptatibus expedita reprehenderit veritatis soluta, optio magni! Saepe, corporis!</p>
+            </div>
           </div>
         </main>
       </>

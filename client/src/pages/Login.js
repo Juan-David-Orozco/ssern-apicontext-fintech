@@ -3,7 +3,7 @@ import { LoginForm } from '../components/LoginForm'
 export function Login() {
 
   return (
-    <section className="gradient-custom">
+    <section className="gradient-custom vh-100">
       <div className="container py-5 h-100">
         <div className="row d-flex justify-content-center align-items-center h-100">
           <div className="col-12 col-sm-8 col-md-6 col-lg-4">

@@ -25,7 +25,7 @@ export function SideBar() {
         <div className="container-fluid">
           {/* Brand */}
           <a className="navbar-brand" href="#!">
-            <h3 className="my-auto">Logo</h3>
+            <h3 className="my-auto py-0">Logo</h3>
             {/* <img
               src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
               height="30"
@@ -36,7 +36,7 @@ export function SideBar() {
 
           
           {/* Links */}
-          <div className="ms-auto d-flex flex-row align-items-center">
+          <div className="ms-auto d-flex flex-row align-items-center my-auto">
             {/* Toggle button */}
             <button
               className="navbar-toggler" type="button"
