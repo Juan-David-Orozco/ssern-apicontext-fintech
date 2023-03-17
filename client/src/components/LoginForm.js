@@ -69,13 +69,13 @@ export function LoginForm() {
       <div className="form-floating text-dark mb-2">
         <input type="email" id="typeEmailX" className="form-control"
           name="email" placeholder='email' onChange={handleChange} />
-        <label for="typeEmailX">Email</label>
+        <label htmlFor="typeEmailX">Email</label>
       </div>
 
       <div className="form-floating text-dark mb-2">
         <input type="password" id="typePasswordX" className="form-control"
           name="password" placeholder='password' onChange={handleChange} />
-        <label for="typePasswordX">Password</label>
+        <label htmlFor="typePasswordX">Password</label>
       </div>
 
       <div className="row mx-auto mt-5">

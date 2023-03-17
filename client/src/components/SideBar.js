@@ -1,7 +1,23 @@
-export function SideBar() {
+import { useNavigate} from 'react-router-dom'
+import { useAuth } from '../context/authContext'
 
+export function SideBar(props) {
 
+  const { logout } = useAuth()
 
+  const navigate = useNavigate()
+
+  const handleShowComponents = ({target}) => {
+    console.log(target.id)
+    if(target.id === "user-info") props.handleUserInfo(true)
+    else if(target.id === "home") props.handleHome(true)
+    else if(target.id === "historico") props.handleHistorico(true)
+  }
+
+  const handleLogout = () => {
+    logout()
+    navigate("/")
+  }
 
   return (
     <header>
@@ -17,49 +33,24 @@ export function SideBar() {
               loading="lazy"
             />
             <br />
-            <button className="btn btn-lg btn-primary my-3 px-4">User</button>
+            <button className="btn btn-lg btn-primary my-3 px-4"
+            onClick={handleShowComponents} id="user-info">User</button>
           </div>
           <hr className="text-white"/>
-
-          {/* <div className="list-group list-group-flush mx-3 my-4 pt-5 px-2">
-            <a href="#!" className="list-group-item list-group-item-action py-3 px-auto my-2 ripple">
-              <i className="fa fa-bar-chart-o fa-fw me-3"></i><span>Main dashboard</span>
-            </a>
-            <a href="#!" aria-current="true" className="list-group-item list-group-item-action py-3 ripple active my-2">
-              <i className="fa fa-chart-area fa-fw me-3"></i><span>Webiste traffic</span>
-            </a>
-          </div> */}
-
-          {/* <div className="row d-flex flex-column align-items-center justify-content-evenly text-white text-center">
-            <a href="#!" aria-current="true" className="bg-light list-group-item py-3 my-2 ripple d-flex justify-content-evenly align-items-center">
-              <i className="fa fa-home fa-2x"></i><span className="text-lg">Home</span>
-            </a>
-            <a href="#!" aria-current="true" className="list-group-item py-3 my-2 ripple d-flex justify-content-evenly align-items-center">
-              <i className="fa fa-bar-chart-o fa-1.5x"></i><span>Historico</span>
-            </a>
-            <a href="#!" className="list-group-item py-3 ripple my-2 d-flex justify-content-evenly align-items-center">
-              <i className="fa fa-sign-out fa-1.5x mr-2"></i><span>Salir</span>
-            </a>
-          </div> */}
-
-          <ul className="nav flex-column mt-4 mb-3 pt-3 px-2">
-            <li className="nav-item my-2">
-              <a className="nav-link active d-flex justify-content-evenly align-items-center" aria-current="page" href="#!">
-                <i className="fa fa-home"></i><span className="sidebar-customer">Home</span>
-              </a>
-            </li>
-            <li className="nav-item my-2">
-              <a className="nav-link d-flex justify-content-evenly align-items-center" aria-current="page" href="#!">
-                <i className="fa fa-bar-chart-o"></i><span className="sidebar-customer">Historico</span>
-              </a>
-            </li>
-            <li className="nav-item my-2">
-              <a className="nav-link d-flex justify-content-evenly align-items-center" aria-current="page" href="#!">
-                <i className="fa fa-sign-out"></i><span className="sidebar-customer">Salir</span>
-              </a>
-            </li>
-          </ul>
-
+          <div className="row mx-auto justify-content-evenly">
+            <button className="btn btn-md bg-secondary d-flex justify-content-evenly align-items-center text-white"
+              onClick={handleShowComponents} id="home">
+              <i className="fa fa-home"></i><span className="sidebar-customer">Home</span>
+            </button>
+            <button className="btn btn-md bg-info d-flex justify-content-evenly align-items-center text-white"
+              onClick={handleShowComponents} id="historico">
+              <i className="fa fa-bar-chart-o"></i><span className="sidebar-customer">Historico</span>
+            </button>
+            <button className="btn btn-md bg-danger d-flex justify-content-evenly align-items-center text-white"
+              onClick={handleLogout} id="logout">
+              <i className="fa fa-sign-out"></i><span className="sidebar-customer">Salir</span>
+            </button>
+          </div>
         </div>
       </nav>
       {/* Navbar */}
@@ -75,8 +66,6 @@ export function SideBar() {
               loading="lazy"
             /> */}
           </a>
-
-          
           {/* Links */}
           <div className="ms-auto d-flex flex-row align-items-center my-auto">
             {/* Toggle button */}
@@ -86,41 +75,7 @@ export function SideBar() {
               aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
               <i className="fa fa-bars"></i>
             </button>
-            {/* Avatar - User 
-            <li className="nav-item dropdown">
-              <a
-                className="nav-link dropdown-toggle d-flex align-items-center"
-                href="#!"
-                id="navbarDropdownMenuLink"
-                role="button"
-                data-mdb-toggle="dropdown"
-                aria-expanded="false"
-              >
-                <img
-                  src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img (31).webp"
-                  className="rounded-circle"
-                  height="20"
-                  alt="Avatar"
-                  loading="lazy"
-                />
-              </a>
-              <ul
-                className="dropdown-menu dropdown-menu-end"
-                aria-labelledby="navbarDropdownMenuLink"
-              >
-                <li>
-                  <a className="dropdown-item" href="#!">My profile</a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#!">Settings</a>
-                </li>
-                <li>
-                  <a className="dropdown-item" href="#!">Logout</a>
-                </li>
-              </ul>
-            </li>*/}
           </div>
-
         </div>
       </nav>
     </header>

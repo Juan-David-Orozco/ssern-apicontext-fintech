@@ -9,6 +9,11 @@ export function Customer() {
 
   const [send, setSend] = useState(false)
 
+  const [showUserInfo, setShowUserInfo] = useState(false)
+  const [showHome, setShowHome] = useState(false)
+  const [showHistorico, setShowHistorico] = useState(false)
+
+
   const [valueAnticipo, setValueAnticipo] = useState(0)
 
   //if(!userLogin) return (<Navigate to={'/login'} />)
@@ -33,16 +38,44 @@ export function Customer() {
     setSend(true)
   }
 
+  const handleUserInfo = (stateUserInfo) => {
+    setShowUserInfo(stateUserInfo)
+    setShowHome(!stateUserInfo)
+    setShowHistorico(!stateUserInfo)
+  }
+
+  const handleHome = (stateHome) => {
+    setShowHome(stateHome)
+    setShowUserInfo(!stateHome)
+    setShowHistorico(!stateHome)
+  }
+
+  const handleHistorico = (stateHistorico) => {
+    setShowHistorico(stateHistorico)
+    setShowUserInfo(!stateHistorico)
+    setShowHome(!stateHistorico)
+  }
+
+
+
   //const returnAnticipo = () => {setSend(false)}
 
   if(!send){
     return (
       <>
-        <SideBar />
+        <SideBar
+          handleUserInfo={handleUserInfo}
+          handleHome={handleHome}
+          handleHistorico={handleHistorico}
+        />
         <main>
           <div className="vh-100 container">
             <div className="row mx-auto align-items-center h-100 text-white mt-5 mt-lg-0">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi sit unde mollitia delectus nihil obcaecati blanditiis necessitatibus voluptate laudantium sint, corrupti voluptatibus expedita reprehenderit veritatis soluta, optio magni! Saepe, corporis!</p>
+
+              {showUserInfo && <div> Informacion de usuario</div>}
+              {showHome && <div> Home</div>}
+              {showHistorico && <div> Historico</div>}
+            
             </div>
           </div>
         </main>
