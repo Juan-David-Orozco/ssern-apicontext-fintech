@@ -1,5 +1,5 @@
 import { useAuth } from '../context/authContext'
-import { Navigate } from 'react-router-dom'
+//import { Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import { SideBar } from '../components/SideBar'
 
@@ -16,7 +16,7 @@ export function Customer() {
 
   const [valueAnticipo, setValueAnticipo] = useState(0)
 
-  if(!userLogin) return (<Navigate to={'/login'} />)
+  //if(!userLogin) return (<Navigate to={'/login'} />)
 
   const toggleInputAnticipo = () => {
     const toggleInputAnticipo = document.getElementById('anticipo')
