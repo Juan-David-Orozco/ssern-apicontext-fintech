@@ -1,20 +1,11 @@
-import { useAuth } from '../context/authContext'
-import { Navigation } from '../components/Navigation'
-
 export function HomePage() {
-
-  const { userLogin } = useAuth()
-
-  console.log(userLogin)
-
   return (
-    <>
-      <Navigation/>
-      <div className="container-fluid rounded text-dark my-5 py-4 justify-content-center vh-100">
-        <div className="row mx-auto align-items-center text-center">
+    <section className="gradient-custom">
+      <div className="container-fluid text-dark py-2 h-100">
+        <div className="row justify-content-center align-items-center text-center mx-auto h-100">
           <p>HomePage</p>
         </div>
       </div>
-    </>
+    </section>
   )
 }

@@ -2,7 +2,7 @@ import { Navigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import { SideBar } from '../components/SideBar'
 
-export function Customer() {
+export function Info() {
 
   const { userLogin } = useAuth()
 
@@ -10,11 +10,11 @@ export function Customer() {
 
   return (
     <>
-      <SideBar />
+      <SideBar/>
       <main>
         <div className="container-fluid vh-100 ">
           <div className="row align-items-center text-white h-100 mx-auto ">
-            Home
+            Info
           </div>
         </div>
       </main>

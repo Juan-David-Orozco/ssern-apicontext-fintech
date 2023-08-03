@@ -1,8 +1,8 @@
-import { useState, useRef } from 'react'
+import { useState } from 'react'
 import { useAuth } from '../context/authContext'
 import { useNavigate } from 'react-router-dom'
-import ReCAPTCHA from "react-google-recaptcha";
 import { Alert } from './Alert'
+//import ReCAPTCHA from "react-google-recaptcha";
 
 export function LoginForm() {
 
@@ -12,9 +12,9 @@ export function LoginForm() {
 
   const [error, setError] = useState('')
 
-  const [validCaptcha, setValidCaptcha] = useState(null)
+  //const [validCaptcha, setValidCaptcha] = useState(null)
 
-  const captcha = useRef(null)
+  //const captcha = useRef(null)
 
   const { login } = useAuth()
 
@@ -24,17 +24,17 @@ export function LoginForm() {
     setUser({...user, [name]: value})
   }
 
-  const onChange = () => {
-    if(captcha.current.getValue())
-      setValidCaptcha(true)
-  }
+  // const onChange = () => {
+  //   if(captcha.current.getValue())
+  //     setValidCaptcha(true)
+  // }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     console.log(user.email, user.password)
     try {
-      if(captcha.current.getValue()) {
-        setValidCaptcha(true)
+      //if(captcha.current.getValue()) {
+        //setValidCaptcha(true)
         if(user.email === "" || user.password === "") {
           setError('Campos obligatorios') 
         } else {
@@ -49,10 +49,10 @@ export function LoginForm() {
           if(userValid.UserType === "admin")
             navigate("/home-admin")
         }
-      } else {
-        console.log("Debe aceptar el captcha")
-        setValidCaptcha(false)
-      }
+      //} else {
+      //   console.log("Debe aceptar el captcha")
+      //   setValidCaptcha(false)
+      // }
     } catch (error) {
       console.log(error)
       setError('Credenciales invalidas intente nuevamente')
@@ -66,19 +66,19 @@ export function LoginForm() {
       <p className="text-white-50 mb-3">Please enter your email and password!</p>
       {error && <Alert msg={error} />}
 
-      <div className="form-floating text-dark mb-2">
+      <div className="form-floating text-dark my-2 py-1">
         <input type="email" id="typeEmailX" className="form-control"
           name="email" placeholder='email' onChange={handleChange} />
         <label htmlFor="typeEmailX">Email</label>
       </div>
 
-      <div className="form-floating text-dark mb-2">
+      <div className="form-floating text-dark my-2 py-1">
         <input type="password" id="typePasswordX" className="form-control"
           name="password" placeholder='password' onChange={handleChange} />
         <label htmlFor="typePasswordX">Password</label>
       </div>
 
-      <div className="row mx-auto mt-5">
+      {/* <div className="row mx-auto mt-5">
         <div className="col-10 mx-auto px-0">
         <ReCAPTCHA
           ref={captcha}
@@ -88,10 +88,10 @@ export function LoginForm() {
         />
         </div>
       </div>
-      {validCaptcha === false && <div className='text-info text-center mb-4 mt-2'>Debe aceptar el captcha</div>}
+      {validCaptcha === false && <div className='text-info text-center mb-4 mt-2'>Debe aceptar el captcha</div>} */}
 
-      <div className="mt-2">
-        <button className="btn btn-outline-light btn-md px-5" type="submit">LOGIN</button>
+      <div className="mt-2 pt-4">
+        <button id='btn-login' className="btn btn-outline-light btn-md px-5" type="submit">LOGIN</button>
       </div>
 
     </form>

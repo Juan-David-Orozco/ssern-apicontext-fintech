@@ -1,34 +1,13 @@
-import { useNavigate} from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/authContext'
 import avatar from '../img/avatar.icon.png'
+import { Link } from 'react-router-dom'
 
-export function SideBar(props) {
+export function SideBar() {
 
   const { logout } = useAuth()
 
   const navigate = useNavigate()
-
-  const handleShowComponents = ({target}) => {
-    console.log(target.id)
-    if(target.id === "user-info") {
-      props.handleUserInfo(true)
-      props.handleHome(false)
-      props.handleHistorico(false)
-    }
-    else if(target.id === "home") {
-      props.handleHome(true)
-      props.handleUserInfo(false)
-      props.handleHistorico(false)
-    }
-    else if(target.id === "historico") {
-      props.handleHistorico(true)
-      props.handleHome(false)
-      props.handleUserInfo(false)
-
-    }
-    const toggleIcon = document.getElementById('sidebarMenu')
-    toggleIcon.classList.remove('show')
-  }
 
   const handleLogout = () => {
     logout()
@@ -39,47 +18,53 @@ export function SideBar(props) {
     <header>
       {/* SideBar */}
       <nav id="sidebarMenu" className="collapse d-lg-block sidebar bg-dark">
-        <div className="position-sticky">
-          <div className="text-center mt-5">
+        <div className="position-sticky mt-3">
+
+          <div className="nav flex-column justify-content-center text-center">
             <img
               src={avatar}
-              className="rounded-circle my-2"
-              height="150"
+              className="rounded-circle my-2 py-4 px-3 mx-auto"
+              height="180"
               alt="Avatar"
               loading="lazy"
             />
-            <br />
-            <button className="btn btn-lg btn-primary my-3 px-4"
-            onClick={handleShowComponents} id="user-info">User</button>
+            <Link className="btn btn-primary btn-md" id="user-info" to="/home-customer/user">User</Link>
           </div>
+
           <hr className="text-white"/>
-          <div className="row mx-auto justify-content-center mt-3">
-            <div className='btn-group'>
-              <button className="my-2 py-1 btn btn-md bg-secondary d-flex justify-content-evenly align-items-center text-white"
-                onClick={handleShowComponents} id="home">
-                <i className="fa fa-home"></i><span className="sidebar-customer">Home</span>
-              </button>
-            </div>
-            <div className="btn-group">
-              <button className="my-2 py-1 btn btn-md bg-primary d-flex justify-content-evenly align-items-center text-white"
-                onClick={handleShowComponents} id="historico">
-                <i className="fa fa-bar-chart-o"></i><span className="sidebar-customer">Historico</span>
-              </button>
-            </div>
-            <div className="btn-group">
-              <button className="my-2 py-1 btn btn-md bg-danger d-flex justify-content-evenly align-items-center text-white"
-                onClick={handleLogout} id="logout">
-                <i className="fa fa-sign-out"></i><span className="sidebar-customer">Salir</span>
-              </button>
-            </div>
+
+          <div className="list-group list-group-flush mx-3 md-mx-5 mt-5" id='navMenu'>
+            <Link className="list-group-item list-group-item-action active py-2 ripple"
+              to="/home-customer"
+            ><i className="fa fa-home"></i><span>Home</span></Link>
+            <Link className="list-group-item list-group-item-action py-2 ripple"
+              to="/home-customer/historico"
+            ><i className="fa fa-bar-chart-o"></i><span>Historico</span></Link>
+            <Link className="list-group-item list-group-item-action bg-danger py-2 text-white"
+              onClick={handleLogout} id="logout"
+            ><i className="fa fa-sign-out"></i><span>Salir</span>
+            </Link>
           </div>
+          {/* <ul class="nav flex-column bg-light mx-3 mt-4">
+              <li class="nav-item">
+                <Link className="nav-link active py-2"
+                to="/home-customer"
+                ><i className="fa fa-home"></i><span>Home</span></Link>
+              </li>
+              <li class="nav-item">
+                <Link className="nav-link py-2"
+                to="/home-customer/historico"
+                ><i className="fa fa-bar-chart-o"></i><span>Historico</span></Link>
+              </li>
+            </ul> */}
+
         </div>
       </nav>
       {/* Navbar */}
-      <nav className="navbar navbar-expand-lg bg-white fixed-top">
+      <nav className="navbar navbar-expand-lg navbar-light bg-white fixed-top">
         <div className="container-fluid">
           {/* Brand */}
-          <a className="navbar-brand" href="#!">
+          <Link className="navbar-brand" to="/">
             <h3 className="my-auto py-0">Logo</h3>
             {/* <img
               src="https://mdbootstrap.com/img/logo/mdb-transaprent-noshadows.png"
@@ -87,17 +72,37 @@ export function SideBar(props) {
               alt="MDB Logo"
               loading="lazy"
             /> */}
-          </a>
+          </Link>
+          {/* Toggle button */}
+          <button
+            className="navbar-toggler" type="button"
+            data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
+            aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <i className="fa fa-bars"></i>
+          </button>
           {/* Links */}
-          <div className="ms-auto d-flex flex-row align-items-center my-auto">
-            {/* Toggle button */}
-            <button
-              className="navbar-toggler" type="button"
-              data-bs-toggle="collapse" data-bs-target="#sidebarMenu"
-              aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-              <i className="fa fa-bars"></i>
-            </button>
-          </div>
+          <ul className="navbar-nav ms-auto d-flex flex-row">
+            <li className="nav-item dropdown">
+              <a
+                className="d-flex nav-link dropdown-toggle hidden-arrow align-items-center"
+                href="#!" id="navbarDropdownMenuLink"
+                role="button" data-bs-toggle="dropdown" 
+                aria-haspopup="true" aria-expanded="false"
+              ><i class="fa fa-user-circle-o"></i>
+              </a>
+              <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                <li>
+                  <Link className="dropdown-item" to="/home-customer">Home</Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/login">Login</Link>
+                </li>
+                <li>
+                  <Link className="dropdown-item" to="/register">Register</Link>
+                </li>
+              </ul>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
